@@ -9,28 +9,103 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <style>
-  body { font-family: 'Inter', sans-serif; background: #F2EDE3; color: #333; overflow-x: hidden; }
-  .photo-frame { border: 15px solid #F5F5F0; box-shadow: 8px 8px 0 #E8E3D5; border-radius: 16px; overflow: hidden; }
-  .hero-bg { background: linear-gradient(180deg, #F2EDE3 0%, #F8F3EC 100%); border-radius: 16px; padding: 2rem; }
-  .section-divider { height: 1px; background: linear-gradient(90deg, transparent, #D8C7B5, transparent); margin: 3rem 0; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #FDF8F2;
+    color: #3A3A3A;
+    overflow-x: hidden;
+  }
+
+  /* Hero Section */
+  .hero-bg {
+    background: linear-gradient(135deg, #FDF8F2 0%, #FAF2E5 100%);
+    border-radius: 16px;
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .photo-frame {
+    border: 12px solid #F5F2EC;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+    transition: transform 0.6s ease;
+  }
+
+  .photo-frame:hover {
+    transform: scale(1.05);
+  }
+
   /* Timeline */
-  .timeline-container { position: relative; max-width: 900px; margin: 0 auto; padding: 4rem 0; }
-  .timeline-line { position: absolute; left: 50%; top: 0; transform: translateX(-50%); width: 4px; height: 100%; background-color: #D8C7B5; }
-  .timeline-item { position: relative; width: 50%; padding: 2rem 1rem; opacity: 0; transform: translateY(50px); transition: all 0.6s ease-out; }
+  .timeline-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 0;
+  }
+
+  .timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 100%;
+    background-color: #D8C7B5;
+  }
+
+  .timeline-item {
+    position: relative;
+    width: 50%;
+    padding: 2rem 1rem;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.7s cubic-bezier(0.5,0,0,1);
+  }
+
   .timeline-item.left { left: 0; text-align: right; padding-right: 3rem; }
   .timeline-item.right { left: 50%; text-align: left; padding-left: 3rem; }
-  .timeline-dot-container { position: absolute; top: 2rem; left: 50%; transform: translateX(-50%); z-index: 10; }
-  .timeline-dot { width: 20px; height: 20px; background-color: #A67C52; border: 4px solid #F5F5F0; border-radius: 50%; }
-  .timeline-content { background: rgba(248,243,236,0.9); padding: 1rem 1.5rem; border-radius: 12px; box-shadow: 0 8px 15px rgba(0,0,0,0.05); }
+
+  .timeline-dot-container {
+    position: absolute;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+  }
+
+  .timeline-dot {
+    width: 20px;
+    height: 20px;
+    background-color: #A67C52;
+    border: 4px solid #FDF8F2;
+    border-radius: 50%;
+  }
+
+  .timeline-content {
+    background: rgba(250, 242, 229, 0.95);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .timeline-content:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.08);
+  }
+
   .fade-slide.active { opacity: 1 !important; transform: translateY(0) !important; }
-  /* Scroll animation helper */
-  .animate { transition: all 0.6s ease-out; }
+
+  /* Scroll Animations */
+  .animate { transition: all 0.7s cubic-bezier(0.5,0,0,1); }
 </style>
 </head>
 <body>
 
 <!-- Navigation -->
-<nav class="fixed top-0 left-0 right-0 bg-[#F8F3EC] z-50 shadow-sm">
+<nav class="fixed top-0 left-0 right-0 bg-[#FAF2E5] z-50 shadow-sm">
   <div class="container mx-auto px-6 py-4 flex justify-between items-center">
     <a href="index.html" class="text-xl font-semibold">Jenna Orr</a>
     <div class="hidden md:flex space-x-8">
@@ -44,13 +119,13 @@
   </div>
 </nav>
 
-<main class="pt-20 pb-16">
+<main class="pt-24 pb-16">
 
   <!-- Hero Section -->
-  <section class="container mx-auto px-6 py-16 hero-bg flex flex-col md:flex-row items-center">
-    <div class="md:w-1/2 mb-12 md:mb-0 animate opacity-0" id="hero-text">
-      <h1 class="text-4xl md:text-5xl font-bold mb-6">Jenna Orr</h1>
-      <h2 class="text-2xl md:text-3xl font-medium mb-6 text-accent">Software Developer</h2>
+  <section class="container mx-auto px-6 py-16 hero-bg flex flex-col md:flex-row items-center gap-12">
+    <div class="md:w-1/2 animate opacity-0" id="hero-text">
+      <h1 class="text-5xl font-bold mb-4">Jenna Orr</h1>
+      <h2 class="text-3xl font-medium mb-6 text-accent">Software Developer</h2>
       <p class="text-lg leading-relaxed">
         Passionate software developer with expertise in creating scalable, efficient applications. 
         Specializing in full-stack development with a focus on clean architecture and intuitive user experiences. 
@@ -64,7 +139,7 @@
     </div>
   </section>
 
-  <div class="section-divider"></div>
+  <div class="my-16 h-px bg-gradient-to-r from-transparent via-[#D8C7B5] to-transparent"></div>
 
   <!-- Timeline Section -->
   <section class="timeline-container relative">
@@ -156,7 +231,7 @@
 
 </main>
 
-<footer class="bg-[#F8F3EC] py-8">
+<footer class="bg-[#FAF2E5] py-8">
   <div class="container mx-auto px-6 text-center">
     <p>&copy; 2025 Jenna Orr. All rights reserved.</p>
   </div>
