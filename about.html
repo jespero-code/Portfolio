@@ -7,7 +7,6 @@
 <meta name="description" content="About Jenna Orr, Software Developer">
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <style>
   body {
     font-family: 'Inter', sans-serif;
@@ -30,11 +29,17 @@
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 12px 24px rgba(0,0,0,0.08);
-    transition: transform 0.6s ease;
+    transition: transform 1.2s ease-in-out;
+    will-change: transform;
   }
 
-  .photo-frame:hover {
-    transform: scale(1.05);
+  .photo-frame.pulse {
+    animation: pulse 3s ease-in-out infinite alternate;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.03); }
   }
 
   /* Timeline */
@@ -51,8 +56,9 @@
     top: 0;
     transform: translateX(-50%);
     width: 4px;
-    height: 100%;
+    height: 0;
     background-color: #D8C7B5;
+    transition: height 1s ease-out;
   }
 
   .timeline-item {
@@ -66,22 +72,6 @@
 
   .timeline-item.left { left: 0; text-align: right; padding-right: 3rem; }
   .timeline-item.right { left: 50%; text-align: left; padding-left: 3rem; }
-
-  .timeline-dot-container {
-    position: absolute;
-    top: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-  }
-
-  .timeline-dot {
-    width: 20px;
-    height: 20px;
-    background-color: #A67C52;
-    border: 4px solid #FDF8F2;
-    border-radius: 50%;
-  }
 
   .timeline-content {
     background: rgba(250, 242, 229, 0.95);
@@ -97,9 +87,6 @@
   }
 
   .fade-slide.active { opacity: 1 !important; transform: translateY(0) !important; }
-
-  /* Scroll Animations */
-  .animate { transition: all 0.7s cubic-bezier(0.5,0,0,1); }
 </style>
 </head>
 <body>
@@ -143,27 +130,24 @@
 
   <!-- Timeline Section -->
   <section class="timeline-container relative">
-    <div class="timeline-line"></div>
+    <div class="timeline-line" id="timeline-line"></div>
 
     <!-- Timeline items -->
-    <div class="timeline-item left fade-slide">
-      <div class="timeline-dot-container"><div class="timeline-dot"></div></div>
+    <div class="timeline-item left fade-slide" style="transition-delay: 0.1s">
       <div class="timeline-content">
         <h3 class="text-xl font-semibold">Born & Raised</h3>
         <p>Grew up in Scottsdale, AZ</p>
       </div>
     </div>
 
-    <div class="timeline-item right fade-slide">
-      <div class="timeline-dot-container"><div class="timeline-dot"></div></div>
+    <div class="timeline-item right fade-slide" style="transition-delay: 0.2s">
       <div class="timeline-content">
         <h3 class="text-xl font-semibold">PVUSD WIT Internship</h3>
         <p>Summer 2018</p>
       </div>
     </div>
 
-    <div class="timeline-item left fade-slide">
-      <div class="timeline-dot-container"><div class="timeline-dot"></div></div>
+    <div class="timeline-item left fade-slide" style="transition-delay: 0.3s">
       <div class="timeline-content">
         <h3 class="text-xl font-semibold">Arizona State University</h3>
         <p>2019 - 2023, B.S. Computer Science</p>
@@ -171,56 +155,49 @@
       </div>
     </div>
 
-    <div class="timeline-item right fade-slide">
-      <div class="timeline-dot-container"><div class="timeline-dot"></div></div>
+    <div class="timeline-item right fade-slide" style="transition-delay: 0.4s">
       <div class="timeline-content">
         <h3 class="text-xl font-semibold">Ultimate Frisbee</h3>
         <p>Joined ASU Club Team</p>
       </div>
     </div>
 
-    <div class="timeline-item left fade-slide">
-      <div class="timeline-dot-container"><div class="timeline-dot"></div></div>
+    <div class="timeline-item left fade-slide" style="transition-delay: 0.5s">
       <div class="timeline-content">
         <h3 class="text-xl font-semibold">Dizpot Internship</h3>
         <p>Summer 2021</p>
       </div>
     </div>
 
-    <div class="timeline-item right fade-slide">
-      <div class="timeline-dot-container"><div class="timeline-dot"></div></div>
+    <div class="timeline-item right fade-slide" style="transition-delay: 0.6s">
       <div class="timeline-content">
         <h3 class="text-xl font-semibold">Lin & Associates</h3>
         <p>Software Development • Nov 2021</p>
       </div>
     </div>
 
-    <div class="timeline-item left fade-slide">
-      <div class="timeline-dot-container"><div class="timeline-dot"></div></div>
+    <div class="timeline-item left fade-slide" style="transition-delay: 0.7s">
       <div class="timeline-content">
         <h3 class="text-xl font-semibold">San Antonio, TX</h3>
         <p>Moved Jan 2024 • Remote Work</p>
       </div>
     </div>
 
-    <div class="timeline-item right fade-slide">
-      <div class="timeline-dot-container"><div class="timeline-dot"></div></div>
+    <div class="timeline-item right fade-slide" style="transition-delay: 0.8s">
       <div class="timeline-content">
         <h3 class="text-xl font-semibold">Alamogordo, NM</h3>
         <p>Moved April 2024</p>
       </div>
     </div>
 
-    <div class="timeline-item left fade-slide">
-      <div class="timeline-dot-container"><div class="timeline-dot"></div></div>
+    <div class="timeline-item left fade-slide" style="transition-delay: 0.9s">
       <div class="timeline-content">
         <h3 class="text-xl font-semibold">Clovis, NM</h3>
         <p>Moved Sept 2024</p>
       </div>
     </div>
 
-    <div class="timeline-item right fade-slide">
-      <div class="timeline-dot-container"><div class="timeline-dot"></div></div>
+    <div class="timeline-item right fade-slide" style="transition-delay: 1s">
       <div class="timeline-content">
         <h3 class="text-xl font-semibold">Got Married</h3>
         <p>Sept 2025</p>
@@ -238,20 +215,32 @@
 </footer>
 
 <script>
-// Scroll animations
 const heroText = document.getElementById('hero-text');
 const heroPhoto = document.getElementById('hero-photo');
 const timelineItems = document.querySelectorAll('.timeline-item');
+const timelineLine = document.getElementById('timeline-line');
 
 const scrollAnimate = () => {
   const trigger = window.innerHeight * 0.85;
+
   // Hero animation
   if(heroText.getBoundingClientRect().top < trigger) heroText.classList.add('opacity-100','translate-y-0');
   if(heroPhoto.getBoundingClientRect().top < trigger) heroPhoto.classList.add('opacity-100','translate-y-0');
-  // Timeline animation
+  heroPhoto.querySelector('.photo-frame').classList.add('pulse');
+
+  // Timeline line animation
+  const timelineTop = timelineItems[0].getBoundingClientRect().top + window.scrollY;
+  const timelineBottom = timelineItems[timelineItems.length-1].getBoundingClientRect().bottom + window.scrollY;
+  const scrollY = window.scrollY + window.innerHeight;
+  if(scrollY > timelineTop) {
+    const totalHeight = timelineBottom - timelineTop;
+    const visible = Math.min(totalHeight, scrollY - timelineTop);
+    timelineLine.style.height = visible + 'px';
+  }
+
+  // Timeline items fade/slide
   timelineItems.forEach(item => {
-    const top = item.getBoundingClientRect().top;
-    if(top < trigger) item.classList.add('active');
+    if(item.getBoundingClientRect().top < trigger) item.classList.add('active');
     else item.classList.remove('active');
   });
 };
