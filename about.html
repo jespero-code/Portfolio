@@ -4,137 +4,82 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About | Jenna Orr</title>
-<meta name="description" content="About Jenna Orr, Software Developer">
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  /* --- Body & Texture --- */
-  body {
-    font-family: 'Inter', sans-serif;
-    background: #FDF8F2;
-    color: #3A3A3A;
-    overflow-x: hidden;
-  }
+  body { font-family:'Inter',sans-serif; background:#FDF8F2; color:#3A3A3A; overflow-x:hidden; }
   body::before {
-    content: '';
-    position: fixed;
-    top:0; left:0; right:0; bottom:0;
-    background-image: 
-      linear-gradient(45deg, rgba(255,255,255,0.03) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.03) 50%, rgba(255,255,255,0.03) 75%, transparent 75%, transparent);
-    background-size: 20px 20px;
-    pointer-events: none;
-    z-index: -1;
+    content:'';
+    position:fixed; top:0; left:0; right:0; bottom:0;
+    background-image: linear-gradient(45deg, rgba(255,255,255,0.03) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.03) 50%, rgba(255,255,255,0.03) 75%, transparent 75%, transparent);
+    background-size:20px 20px; pointer-events:none; z-index:-1;
   }
 
-  /* --- Navigation --- */
-  nav { background: #FAF2E5; }
-  nav a { transition: color 0.3s; }
-  nav a:hover { color: #A67C52; }
+  nav { background:#FAF2E5; }
+  nav a { transition:color 0.3s; }
+  nav a:hover { color:#A67C52; }
 
   /* --- Hero Section --- */
   .hero-bg {
     background: linear-gradient(135deg, #FDF8F2 0%, #FAF2E5 100%);
-    border-radius: 16px;
-    padding: 3rem;
-    position: relative;
-    overflow: hidden;
-    box-shadow: inset 0 0 50px rgba(255,255,255,0.2);
-    margin-bottom: 3rem;
+    border-radius:16px; padding:3rem; margin-bottom:3rem;
+    overflow:hidden; box-shadow: inset 0 0 50px rgba(255,255,255,0.2);
+    display: flex; flex-direction: column; align-items: center; gap:2rem;
   }
 
   .photo-frame {
-    border: 12px solid #F5F2EC;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 12px 24px rgba(0,0,0,0.08);
-    transition: transform 1.2s ease-in-out;
-    will-change: transform;
+    border:12px solid #F5F2EC; border-radius:16px; overflow:hidden;
+    box-shadow:0 12px 40px rgba(0,0,0,0.08); transition:transform 2s ease-in-out;
   }
-  .photo-frame.pulse { animation: pulse 3s ease-in-out infinite alternate; }
-  @keyframes pulse { 0% { transform: scale(1); } 100% { transform: scale(1.03); } }
+  .photo-frame.pulse { animation: float 6s ease-in-out infinite alternate; }
+  @keyframes float { 0% {transform:translateY(0);} 100%{transform:translateY(-12px);} }
 
-  /* --- Hero text animation --- */
   .hero-line {
-    opacity: 0;
-    transform: translateY(20px);
-    display: inline-block;
-    transition: all 0.8s cubic-bezier(0.5,0,0,1);
+    opacity:0;
+    transform: translateY(20px) scale(0.95);
+    transition: opacity 0.8s ease, transform 0.8s ease;
   }
   .hero-line.active {
-    opacity: 1;
-    transform: translateY(0);
+    opacity:1;
+    transform: translateY(0) scale(1);
   }
 
-  /* Typewriter letters */
-  .typewriter span {
-    opacity: 0;
-    display: inline-block;
-    transform: translateY(5px);
-    transition: all 0.05s ease-out;
+  .hero-name {
+    background: linear-gradient(90deg, #A67C52, #D8C7B5, #A67C52);
+    background-size:200% 100%; -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    animation: shine 3s ease-in-out infinite;
   }
-  .typewriter span.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  @keyframes shine { 0%{background-position:-200% 0;} 100%{background-position:200% 0;} }
 
-  #hero-text h1.active {
-    background: linear-gradient(90deg, #A67C52, #D8C7B5);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  /* --- Divider --- */
-  .section-divider { height: 1px; background: linear-gradient(90deg, transparent, #D8C7B5, transparent); margin: 3rem 0; }
+  .section-divider { height:1px; background: linear-gradient(90deg,transparent,#D8C7B5,transparent); margin:3rem 0; }
 
   /* --- Timeline --- */
   .timeline-container {
-    position: relative;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 4rem 0;
-    background: linear-gradient(135deg, #FDF8F2 0%, #FAF2E5 100%);
-    border-radius: 16px;
-    box-shadow: inset 0 0 40px rgba(255,255,255,0.15);
-    will-change: transform;
+    position:relative; max-width:900px; margin:0 auto; padding:4rem 0;
+    background: linear-gradient(135deg, #FDF8F2 0%, #FAF2E5 100%); border-radius:16px; box-shadow: inset 0 0 40px rgba(255,255,255,0.15);
   }
   .timeline-line {
-    position: absolute;
-    left: 50%;
-    top: 0;
-    transform: translateX(-50%);
-    width: 4px;
-    height: 0;
-    background-color: #D8C7B5;
-    transition: height 1s ease-out;
+    position:absolute; left:50%; top:0; transform:translateX(-50%); width:4px; height:0; background-color:#D8C7B5; transition: height 1s ease-out;
   }
   .timeline-item {
-    position: relative;
-    width: 50%;
-    padding: 2rem 1rem;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.7s cubic-bezier(0.5,0,0,1);
+    position:relative; width:50%; padding:2rem 1rem; opacity:0;
+    transition: all 0.8s cubic-bezier(0.65,0,0.35,1);
   }
-  .timeline-item.left { left: 0; text-align: right; padding-right: 3rem; }
-  .timeline-item.right { left: 50%; text-align: left; padding-left: 3rem; }
+  .timeline-item.left { left:0; text-align:right; padding-right:3rem; transform: translateX(-50px); }
+  .timeline-item.right { left:50%; text-align:left; padding-left:3rem; transform: translateX(50px); }
+
+  .timeline-item.active { opacity:1; transform: translateX(0); animation: bounceIn 0.6s ease; }
+  @keyframes bounceIn { 0%{transform:translateY(30px);opacity:0;} 60%{transform:translateY(-10px);opacity:1;} 80%{transform:translateY(5px);} 100%{transform:translateY(0);} }
 
   .timeline-content {
-    background: rgba(250, 242, 229, 0.95);
-    padding: 1rem 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.06);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    background: rgba(250,242,229,0.95); padding:1rem 1.5rem; border-radius:12px;
+    box-shadow:0 10px 20px rgba(0,0,0,0.06); transition: transform 0.5s ease, box-shadow 0.5s ease;
   }
-  .timeline-content:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 14px 28px rgba(0,0,0,0.08);
-  }
-  .fade-slide.active { opacity: 1 !important; transform: translateY(0) !important; }
+  .timeline-content:hover { transform:translateY(-4px); box-shadow:0 14px 28px rgba(0,0,0,0.08); }
 </style>
 </head>
 <body>
 
-<!-- Navigation -->
 <nav class="fixed top-0 left-0 right-0 z-50 shadow-sm">
   <div class="container mx-auto px-6 py-4 flex justify-between items-center">
     <a href="index.html" class="text-xl font-semibold">Jenna Orr</a>
@@ -149,41 +94,39 @@
 
 <main class="pt-24 pb-16">
 
-  <!-- Hero Section -->
-  <section class="container mx-auto px-6 py-16 hero-bg flex flex-col md:flex-row items-center gap-12">
-    <div class="md:w-1/2" id="hero-text">
-      <h1 class="hero-line">Jenna Orr</h1>
-      <h2 class="hero-line">Software Developer</h2>
-      <p class="hero-line typewriter">
-        Passionate software developer with expertise in creating scalable, efficient applications. 
-        Specializing in full-stack development with a focus on clean architecture and intuitive user experiences. 
-        Committed to continuous learning and applying cutting-edge technologies to solve real-world problems.
-      </p>
+<section class="container mx-auto px-6 py-16 hero-bg flex flex-col md:flex-row items-center gap-12">
+  <div class="md:w-1/2" id="hero-text">
+    <h1 class="hero-line hero-name text-5xl font-bold mb-4">Jenna Orr</h1>
+    <h2 class="hero-line text-3xl font-medium mb-6 text-accent">Software Developer</h2>
+    <p class="hero-line text-lg leading-relaxed">
+      Passionate software developer with expertise in creating scalable, efficient applications. 
+      Specializing in full-stack development with a focus on clean architecture and intuitive user experiences. 
+      Committed to continuous learning and applying cutting-edge technologies to solve real-world problems.
+    </p>
+  </div>
+  <div class="md:w-1/2 flex justify-center items-center" id="hero-photo">
+    <div class="photo-frame">
+      <img src="DSC_0376.JPG" alt="Jenna Orr" class="w-full max-w-md block">
     </div>
-    <div class="md:w-1/2 flex justify-center items-center" id="hero-photo">
-      <div class="photo-frame">
-        <img src="DSC_0376.JPG" alt="Jenna Orr" class="w-full max-w-md block">
-      </div>
-    </div>
-  </section>
+  </div>
+</section>
 
-  <div class="section-divider"></div>
+<div class="section-divider"></div>
 
-  <!-- Timeline Section -->
-  <section class="timeline-container relative">
-    <div class="timeline-line" id="timeline-line"></div>
+<section class="timeline-container relative">
+  <div class="timeline-line" id="timeline-line"></div>
 
-    <div class="timeline-item left fade-slide"><div class="timeline-content"><h3>Born & Raised</h3><p>Grew up in Scottsdale, AZ</p></div></div>
-    <div class="timeline-item right fade-slide"><div class="timeline-content"><h3>PVUSD WIT Internship</h3><p>Summer 2018</p></div></div>
-    <div class="timeline-item left fade-slide"><div class="timeline-content"><h3>Arizona State University</h3><p>2019 - 2023, B.S. Computer Science</p><p>Graduated with honors; coursework in web dev, machine learning, and databases.</p></div></div>
-    <div class="timeline-item right fade-slide"><div class="timeline-content"><h3>Ultimate Frisbee</h3><p>Joined ASU Club Team</p></div></div>
-    <div class="timeline-item left fade-slide"><div class="timeline-content"><h3>Dizpot Internship</h3><p>Summer 2021</p></div></div>
-    <div class="timeline-item right fade-slide"><div class="timeline-content"><h3>Lin & Associates</h3><p>Software Development • Nov 2021</p></div></div>
-    <div class="timeline-item left fade-slide"><div class="timeline-content"><h3>San Antonio, TX</h3><p>Moved Jan 2024 • Remote Work</p></div></div>
-    <div class="timeline-item right fade-slide"><div class="timeline-content"><h3>Alamogordo, NM</h3><p>Moved April 2024</p></div></div>
-    <div class="timeline-item left fade-slide"><div class="timeline-content"><h3>Clovis, NM</h3><p>Moved Sept 2024</p></div></div>
-    <div class="timeline-item right fade-slide"><div class="timeline-content"><h3>Got Married</h3><p>Sept 2025</p></div></div>
-  </section>
+  <div class="timeline-item left"><div class="timeline-content"><h3>Born & Raised</h3><p>Grew up in Scottsdale, AZ</p></div></div>
+  <div class="timeline-item right"><div class="timeline-content"><h3>PVUSD WIT Internship</h3><p>Summer 2018</p></div></div>
+  <div class="timeline-item left"><div class="timeline-content"><h3>Arizona State University</h3><p>2019 - 2023, B.S. Computer Science</p><p>Graduated with honors; coursework in web dev, machine learning, and databases.</p></div></div>
+  <div class="timeline-item right"><div class="timeline-content"><h3>Ultimate Frisbee</h3><p>Joined ASU Club Team</p></div></div>
+  <div class="timeline-item left"><div class="timeline-content"><h3>Dizpot Internship</h3><p>Summer 2021</p></div></div>
+  <div class="timeline-item right"><div class="timeline-content"><h3>Lin & Associates</h3><p>Software Development • Nov 2021</p></div></div>
+  <div class="timeline-item left"><div class="timeline-content"><h3>San Antonio, TX</h3><p>Moved Jan 2024 • Remote Work</p></div></div>
+  <div class="timeline-item right"><div class="timeline-content"><h3>Alamogordo, NM</h3><p>Moved April 2024</p></div></div>
+  <div class="timeline-item left"><div class="timeline-content"><h3>Clovis, NM</h3><p>Moved Sept 2024</p></div></div>
+  <div class="timeline-item right"><div class="timeline-content"><h3>Got Married</h3><p>Sept 2025</p></div></div>
+</section>
 
 </main>
 
@@ -194,72 +137,59 @@
 </footer>
 
 <script>
-/* --- Hero Text + Typewriter + Photo --- */
 const heroLines = document.querySelectorAll('.hero-line');
 const heroPhoto = document.getElementById('hero-photo');
 const heroFrame = heroPhoto.querySelector('.photo-frame');
-const typewriterParagraph = document.querySelector('.typewriter');
 const timelineItems = document.querySelectorAll('.timeline-item');
 const timelineLine = document.getElementById('timeline-line');
 const timelineContainer = document.querySelector('.timeline-container');
 
-const animateHeroText = () => {
+const animateHero = () => {
   const trigger = window.innerHeight * 0.85;
-  if(heroLines[0].getBoundingClientRect().top < trigger) {
-    // Stagger heading/subheading
-    heroLines.forEach((line, i) => {
-      if(!line.classList.contains('active')) {
-        setTimeout(() => line.classList.add('active'), i * 250);
-      }
-    });
 
-    // Typewriter paragraph
-    if(typewriterParagraph && !typewriterParagraph.dataset.typed) {
-      typewriterParagraph.dataset.typed = true;
-      const text = typewriterParagraph.textContent;
-      typewriterParagraph.textContent = '';
-      text.split('').forEach(char => {
-        const span = document.createElement('span');
-        span.textContent = char;
-        typewriterParagraph.appendChild(span);
-      });
-      typewriterParagraph.querySelectorAll('span').forEach((span, i) => {
-        setTimeout(() => span.classList.add('active'), i * 25);
-      });
+  // Hero text: fade + slide + scale, animate every time it enters viewport
+  heroLines.forEach((line, i) => {
+    const top = line.getBoundingClientRect().top;
+    if(top < trigger && top > 0){
+      setTimeout(()=>line.classList.add('active'), i*200);
+    } else {
+      line.classList.remove('active');
     }
-
-    // Hero photo pulse
-    heroFrame.classList.add('pulse');
-  }
+  });
 
   // Hero photo float
-  const scrollY = window.scrollY;
-  const offset = Math.min(Math.max(scrollY / 20, -10), 10);
-  heroFrame.style.transform = `translateY(${offset}px) scale(1)`;
+  const photoTop = heroPhoto.getBoundingClientRect().top;
+  if(photoTop < trigger && photoTop > 0){
+    heroFrame.classList.add('pulse');
+  } else {
+    heroFrame.classList.remove('pulse');
+  }
 
   // Timeline line draw
-  const timelineTop = timelineItems[0].getBoundingClientRect().top + scrollY;
-  const timelineBottom = timelineItems[timelineItems.length-1].getBoundingClientRect().bottom + scrollY;
-  const scrollBottom = scrollY + window.innerHeight;
-  if(scrollBottom > timelineTop) {
+  const timelineTop = timelineItems[0].getBoundingClientRect().top + window.scrollY;
+  const timelineBottom = timelineItems[timelineItems.length-1].getBoundingClientRect().bottom + window.scrollY;
+  const scrollBottom = window.scrollY + window.innerHeight;
+  if(scrollBottom > timelineTop){
     const totalHeight = timelineBottom - timelineTop;
     const visible = Math.min(totalHeight, scrollBottom - timelineTop);
-    timelineLine.style.height = visible + 'px';
+    timelineLine.style.height = visible+'px';
   }
 
   // Timeline horizontal parallax
-  const offsetX = Math.min(Math.max((scrollY - timelineTop) / 30, -10), 10);
+  const offsetX = Math.min(Math.max((window.scrollY - timelineTop)/30,-10),10);
   timelineContainer.style.transform = `translateX(${offsetX}px)`;
 
-  // Timeline items fade-slide
-  timelineItems.forEach(item => {
-    if(item.getBoundingClientRect().top < trigger) item.classList.add('active');
+  // Timeline items fade-slide + bounce
+  timelineItems.forEach(item=>{
+    const top = item.getBoundingClientRect().top;
+    if(top < window.innerHeight * 0.85 && top > 0) item.classList.add('active');
     else item.classList.remove('active');
   });
 };
 
-window.addEventListener('scroll', animateHeroText);
-window.addEventListener('load', animateHeroText);
+window.addEventListener('scroll', animateHero);
+window.addEventListener('load', animateHero);
 </script>
+
 </body>
 </html>
