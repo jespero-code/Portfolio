@@ -32,7 +32,21 @@
         }
     </style>
 </head>
-<body class="bg-beige text-dark font-sans">
+<body class="bg-beige text-dark font-sans overflow-x-hidden">
+    <div id="parallax-container" class="relative perspective-1000 min-h-screen">
+        <!-- 3D Parallax Background Layers -->
+        <div data-depth="0.05" class="parallax-layer absolute inset-0 pointer-events-none">
+            <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-[#f2ede3] to-transparent opacity-70"></div>
+        </div>
+        
+        <div data-depth="0.15" class="parallax-layer absolute inset-0 pointer-events-none">
+            <div class="absolute top-20 right-20 w-64 h-64 bg-[#e8e3d5] rounded-full blur-3xl opacity-60"></div>
+        </div>
+        
+        <div data-depth="0.25" class="parallax-layer absolute inset-0 pointer-events-none">
+            <div class="absolute bottom-10 left-10 w-80 h-80 bg-[#d8c7b5] rounded-full blur-2xl opacity-40"></div>
+        </div>
+        
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 right-0 bg-beige z-50 shadow-sm">
         <div class="container mx-auto px-6 py-4">
@@ -65,10 +79,11 @@
                         </p>
                     </div>
                     <div class="md:w-1/2 flex justify-center">
-                        <div class="photo-frame">
-                            <!-- Replace with your actual photo -->
+                        <div data-depth="0.35" class="parallax-layer">
+                        <div class="photo-frame transform transition-transform duration-300 will-change-transform" id="hero-photo">
                             <img src="DSC_0376.JPG" alt="Jenna Orr" class="w-full max-w-md">
                         </div>
+                    </div>
                     </div>
                 </div>
             </section>
@@ -102,7 +117,7 @@
             <section class="py-16">
                 <h2 class="text-3xl font-bold mb-12 text-center">My Journey</h2>
             
-                <div class="relative max-w-3xl mx-auto">
+                <div class="relative flex items-center parallax-layer" data-depth="0.2">
                     <!-- Vertical line -->
                     <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-[#D8C7B5]"></div>
             
@@ -132,7 +147,7 @@
                         <!-- Item -->
                         <div class="relative flex items-center">
                             <div class="w-1/2 pr-8 text-right">
-                                <h3 class="text-xl font-semibold">ASU</h3>
+                                <h3 class="text-xl font-semibold">Arizona State University</h3>
                                 <p class="text-gray-700">Started 2019</p>
                             </div>
                             <div class="w-8 h-8 bg-accent rounded-full border-4 border-beige mx-4"></div>
@@ -146,6 +161,16 @@
                             <div class="w-1/2 pl-8">
                                 <h3 class="text-xl font-semibold">Ultimate Frisbee</h3>
                                 <p class="text-gray-700">Joined ASU Club Team</p>
+                            </div>
+                        </div>
+
+                        <!-- Item -->
+                        <div class="relative flex items-center">
+                            <div class="w-1/2"></div>
+                            <div class="w-8 h-8 bg-accent rounded-full border-4 border-beige mx-4"></div>
+                            <div class="w-1/2 pl-8">
+                                <h3 class="text-xl font-semibold">Someburros</h3>
+                                <p class="text-gray-700">2020</p>
                             </div>
                         </div>
             
@@ -166,6 +191,16 @@
                             <div class="w-1/2 pl-8">
                                 <h3 class="text-xl font-semibold">Lin & Associates</h3>
                                 <p class="text-gray-700">Software Dev • Nov 2021</p>
+                            </div>
+                        </div>
+
+                        <!-- Item -->
+                        <div class="relative flex items-center">
+                            <div class="w-1/2"></div>
+                            <div class="w-8 h-8 bg-accent rounded-full border-4 border-beige mx-4"></div>
+                            <div class="w-1/2 pl-8">
+                                <h3 class="text-xl font-semibold">Graduation</h3>
+                                <p class="text-gray-700">B.S. in Computer Science and a minor in business</p>
                             </div>
                         </div>
             
@@ -199,6 +234,16 @@
                             <div class="w-1/2"></div>
                         </div>
             
+                        <!-- Item -->
+                        <div class="relative flex items-center">
+                            <div class="w-1/2"></div>
+                            <div class="w-8 h-8 bg-accent rounded-full border-4 border-beige mx-4"></div>
+                            <div class="w-1/2 pl-8">
+                                <h3 class="text-xl font-semibold">Got Married</h3>
+                                <p class="text-gray-700">Sept 2025</p>
+                            </div>
+                        </div>
+
                         <!-- Item -->
                         <div class="relative flex items-center">
                             <div class="w-1/2"></div>
@@ -251,7 +296,7 @@
             origin: 'bottom',
             duration: 800
         });
-
+        
         ScrollReveal().reveal('p', {
             delay: 400,
             distance: '10px',
@@ -259,6 +304,31 @@
             duration: 800,
             interval: 100
         });
+
+        // Full dramatic parallax effect
+        document.addEventListener("scroll", () => {
+            const scrolled = window.scrollY;
+        
+            document.querySelectorAll(".parallax-layer").forEach(layer => {
+                const depth = layer.getAttribute("data-depth");
+                const movement = scrolled * depth;
+        
+                layer.style.transform = `translate3d(0, ${movement}px, 0)`;
+            });
+        });
+        
+        // Hero photo tilt on mouse movement
+        document.addEventListener("mousemove", (e) => {
+            const photo = document.getElementById("hero-photo");
+            if (!photo) return;
+        
+            const x = (window.innerWidth / 2 - e.clientX) / 25;
+            const y = (window.innerHeight / 2 - e.clientY) / 25;
+        
+            photo.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+        });
+
     </script>
+</div>  
 </body>
 </html>
