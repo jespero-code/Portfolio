@@ -35,6 +35,7 @@
     position: relative;
     overflow: hidden;
     box-shadow: inset 0 0 50px rgba(255,255,255,0.2);
+    will-change: transform;
   }
 
   .photo-frame {
@@ -64,6 +65,7 @@
     background: linear-gradient(135deg, #FDF8F2 0%, #FAF2E5 100%);
     border-radius: 16px;
     box-shadow: inset 0 0 40px rgba(255,255,255,0.15);
+    will-change: transform;
   }
 
   .timeline-line {
@@ -104,6 +106,7 @@
 
   .fade-slide.active { opacity: 1 !important; transform: translateY(0) !important; }
 </style>
+  
 </head>
 <body>
 
@@ -235,16 +238,22 @@ const heroText = document.getElementById('hero-text');
 const heroPhoto = document.getElementById('hero-photo');
 const timelineItems = document.querySelectorAll('.timeline-item');
 const timelineLine = document.getElementById('timeline-line');
+const heroFrame = heroPhoto.querySelector('.photo-frame');
 
 const scrollAnimate = () => {
   const trigger = window.innerHeight * 0.85;
 
-  // Hero animation
+  // Hero animations
   if(heroText.getBoundingClientRect().top < trigger) heroText.classList.add('opacity-100','translate-y-0');
   if(heroPhoto.getBoundingClientRect().top < trigger) heroPhoto.classList.add('opacity-100','translate-y-0');
-  heroPhoto.querySelector('.photo-frame').classList.add('pulse');
+  heroFrame.classList.add('pulse');
 
-  // Timeline line animation
+  // Hero parallax: moves photo slightly with scroll
+  const heroRect = heroPhoto.getBoundingClientRect();
+  const heroOffset = Math.min(Math.max(window.scrollY / 20, -10), 10);
+  heroFrame.style.transform = `translateY(${heroOffset}px) scale(1)`;
+
+  // Timeline line draw
   const timelineTop = timelineItems[0].getBoundingClientRect().top + window.scrollY;
   const timelineBottom = timelineItems[timelineItems.length-1].getBoundingClientRect().bottom + window.scrollY;
   const scrollY = window.scrollY + window.innerHeight;
@@ -253,6 +262,11 @@ const scrollAnimate = () => {
     const visible = Math.min(totalHeight, scrollY - timelineTop);
     timelineLine.style.height = visible + 'px';
   }
+
+  // Timeline parallax: subtle horizontal shift of background
+  const timelineContainer = document.querySelector('.timeline-container');
+  const offsetX = Math.min(Math.max((window.scrollY - timelineTop) / 30, -10), 10);
+  timelineContainer.style.transform = `translateX(${offsetX}px)`;
 
   // Timeline items fade/slide
   timelineItems.forEach(item => {
@@ -264,6 +278,5 @@ const scrollAnimate = () => {
 window.addEventListener('scroll', scrollAnimate);
 window.addEventListener('load', scrollAnimate);
 </script>
-
 </body>
 </html>
