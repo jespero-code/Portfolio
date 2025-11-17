@@ -1,313 +1,170 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About | Jenna Orr</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<!-- Timeline Section -->
+<section class="timeline-container relative py-16">
+  <div class="timeline-line"></div>
+
+  <!-- Timeline items -->
+  <div class="timeline-item left fade-slide">
+    <div class="timeline-dot-container">
+      <div class="timeline-dot"></div>
+    </div>
+    <div class="timeline-content">
+      <h3 class="text-xl font-semibold">Born & Raised</h3>
+      <p>Grew up in Scottsdale, AZ</p>
+    </div>
+  </div>
+
+  <div class="timeline-item right fade-slide">
+    <div class="timeline-dot-container">
+      <div class="timeline-dot"></div>
+    </div>
+    <div class="timeline-content">
+      <h3 class="text-xl font-semibold">PVUSD WIT Internship</h3>
+      <p>Summer 2018</p>
+    </div>
+  </div>
+
+  <div class="timeline-item left fade-slide">
+    <div class="timeline-dot-container">
+      <div class="timeline-dot"></div>
+    </div>
+    <div class="timeline-content">
+      <h3 class="text-xl font-semibold">Arizona State University</h3>
+      <p>2019 - 2023, B.S. Computer Science</p>
+      <p>Graduated with honors; coursework in web dev, machine learning, and databases.</p>
+    </div>
+  </div>
+
+  <div class="timeline-item right fade-slide">
+    <div class="timeline-dot-container">
+      <div class="timeline-dot"></div>
+    </div>
+    <div class="timeline-content">
+      <h3 class="text-xl font-semibold">Ultimate Frisbee</h3>
+      <p>Joined ASU Club Team</p>
+    </div>
+  </div>
+
+  <div class="timeline-item left fade-slide">
+    <div class="timeline-dot-container">
+      <div class="timeline-dot"></div>
+    </div>
+    <div class="timeline-content">
+      <h3 class="text-xl font-semibold">Dizpot Internship</h3>
+      <p>Summer 2021</p>
+    </div>
+  </div>
+
+  <div class="timeline-item right fade-slide">
+    <div class="timeline-dot-container">
+      <div class="timeline-dot"></div>
+    </div>
+    <div class="timeline-content">
+      <h3 class="text-xl font-semibold">Lin & Associates</h3>
+      <p>Software Development • Nov 2021</p>
+    </div>
+  </div>
+
+  <div class="timeline-item left fade-slide">
+    <div class="timeline-dot-container">
+      <div class="timeline-dot"></div>
+    </div>
+    <div class="timeline-content">
+      <h3 class="text-xl font-semibold">San Antonio, TX</h3>
+      <p>Moved Jan 2024 • Remote Work</p>
+    </div>
+  </div>
+
+  <div class="timeline-item right fade-slide">
+    <div class="timeline-dot-container">
+      <div class="timeline-dot"></div>
+    </div>
+    <div class="timeline-content">
+      <h3 class="text-xl font-semibold">Alamogordo, NM</h3>
+      <p>Moved April 2024</p>
+    </div>
+  </div>
+
+  <div class="timeline-item left fade-slide">
+    <div class="timeline-dot-container">
+      <div class="timeline-dot"></div>
+    </div>
+    <div class="timeline-content">
+      <h3 class="text-xl font-semibold">Clovis, NM</h3>
+      <p>Moved Sept 2024</p>
+    </div>
+  </div>
+
+  <div class="timeline-item right fade-slide">
+    <div class="timeline-dot-container">
+      <div class="timeline-dot"></div>
+    </div>
+    <div class="timeline-content">
+      <h3 class="text-xl font-semibold">Got Married</h3>
+      <p>Sept 2025</p>
+    </div>
+  </div>
+</section>
+
+<!-- CSS already included in your page -->
 <style>
-  body {
-    font-family: 'Inter', sans-serif;
-    background-color: #F5F5F0;
-    color: #333;
-    overflow-x: hidden;
-  }
-
-  .text-accent { color: #A67C52; }
-
-  /* Hero section background */
-  .hero-bg {
-    background: linear-gradient(135deg, #E8E3D5 0%, #F5F5F0 100%);
-    position: relative;
-    padding: 4rem 2rem;
-    overflow: hidden;
-  }
-
-  .hero-bg::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background-image: radial-gradient(rgba(232,227,213,0.1) 1px, transparent 1px);
-    background-size: 20px 20px;
-    z-index: 0;
-  }
-
-  /* Floating blobs behind timeline */
-  .floating-blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(100px);
-    opacity: 0.3;
-    animation: floatBlob 20s ease-in-out infinite alternate;
-    z-index: 0;
-  }
-
-  @keyframes floatBlob {
-    0% { transform: translateY(0) translateX(0); }
-    50% { transform: translateY(-30px) translateX(20px); }
-    100% { transform: translateY(0) translateX(0); }
-  }
-
-  /* Hero photo */
-  .photo-frame {
-    border: 15px solid #F5F5F0;
-    box-shadow: 8px 8px 0 #E8E3D5;
-    position: relative;
-    max-width: 100%;
-    z-index: 1;
-    animation: floatPhoto 3s ease-in-out infinite alternate;
-  }
-
-  @keyframes floatPhoto {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-15px); }
-  }
-
-  .section-divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, #D8C7B5, transparent);
-    margin: 3rem 0;
-  }
-
-  /* Timeline */
-  .timeline-container {
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem 0;
-    z-index: 1;
-  }
-
-  .timeline-line {
-    position: absolute;
-    left: 50%;
-    top: 0;
-    transform: translateX(-50%);
-    width: 4px;
-    height: 100%;
-    background-color: #D8C7B5;
-  }
-
-  .timeline-item {
-    position: relative;
-    width: 50%;
-    padding: 2rem 1rem;
-    opacity: 0;
-    transform: translateY(50px) translateZ(0);
-    transition: all 0.6s ease-out;
-    will-change: transform, opacity;
-  }
-
-  .timeline-item.left { left: 0; text-align: right; }
-  .timeline-item.right { left: 50%; text-align: left; padding-left: 3rem; padding-right: 0; }
-
-  .timeline-dot {
-    position: absolute;
-    top: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    height: 20px;
-    background-color: #A67C52;
-    border: 4px solid #F5F5F0;
-    border-radius: 50%;
-    z-index: 10;
-  }
-
-  .timeline-content {
-    z-index: 1;
-    position: relative;
-    background: rgba(248, 243, 236, 0.9);
-    padding: 1rem 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 8px 15px rgba(0,0,0,0.05);
-    transition: transform 0.6s ease, opacity 0.6s ease;
-  }
-
-  .fade-slide {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.8s ease-out;
-  }
-
-  .fade-slide.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.timeline-container { position: relative; max-width: 800px; margin: 0 auto; }
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 100%;
+  background-color: #D8C7B5;
+}
+.timeline-item {
+  position: relative;
+  width: 50%;
+  padding: 2rem 1rem;
+  opacity: 0;
+  transition: all 0.6s ease-out;
+}
+.timeline-item.left { left: 0; text-align: right; padding-right: 3rem; }
+.timeline-item.right { left: 50%; text-align: left; padding-left: 3rem; }
+.timeline-dot-container {
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+.timeline-dot {
+  width: 20px;
+  height: 20px;
+  background-color: #A67C52;
+  border: 4px solid #F5F5F0;
+  border-radius: 50%;
+}
+.timeline-content {
+  position: relative;
+  background: rgba(248, 243, 236, 0.9);
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.05);
+}
+.fade-slide.active {
+  opacity: 1 !important;
+  transform: translateY(0) translateZ(30px) !important;
+}
 </style>
-</head>
-<body>
-
-<nav class="fixed top-0 left-0 right-0 bg-beige z-50 shadow-sm">
-  <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-    <a href="index.html" class="text-xl font-semibold">Jenna Orr</a>
-    <div class="hidden md:flex space-x-8">
-      <a href="about.html" class="text-accent font-medium">About</a>
-      <a href="experience.html" class="hover:text-accent transition duration-300">Experience</a>
-      <a href="contact.html" class="hover:text-accent transition duration-300">Contact</a>
-    </div>
-    <button class="md:hidden focus:outline-none">
-      <i class="fas fa-bars text-xl"></i>
-    </button>
-  </div>
-</nav>
-
-<main class="pt-20 relative z-10">
-
-  <!-- Hero / Software Developer Section -->
-  <section class="hero-bg flex flex-col md:flex-row items-center fade-slide" id="hero-section">
-    <div class="md:w-1/2 mb-12 md:mb-0 z-10">
-      <h1 class="text-4xl md:text-5xl font-bold mb-6">Jenna Orr</h1>
-      <h2 class="text-2xl md:text-3xl font-medium mb-6 text-accent">Software Developer</h2>
-      <p class="text-lg leading-relaxed">
-        Passionate software developer with expertise in creating scalable, efficient applications.
-        Specializing in full-stack development with a focus on clean architecture and intuitive user experiences.
-        Committed to continuous learning and applying cutting-edge technologies to solve real-world problems.
-      </p>
-    </div>
-    <div class="md:w-1/2 flex justify-center relative z-10">
-      <div class="photo-frame">
-        <img src="DSC_0376.JPG" alt="Jenna Orr" class="w-full max-w-md">
-      </div>
-    </div>
-  </section>
-
-  <!-- Background floating blobs -->
-  <div class="floating-blob w-64 h-64 bg-[#E8E3D5] top-1/3 left-1/4"></div>
-  <div class="floating-blob w-72 h-72 bg-[#D8C7B5] top-2/3 right-1/4 animation-delay-5s"></div>
-
-  <div class="section-divider"></div>
-
-  <!-- Timeline Section -->
-  <section class="timeline-container">
-
-    <div class="timeline-line"></div>
-
-    <!-- Timeline items -->
-    <div class="timeline-item left" data-order="1">
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">
-        <h3 class="text-xl font-semibold">Born & Raised</h3>
-        <p>Grew up in Scottsdale, AZ</p>
-      </div>
-    </div>
-
-    <div class="timeline-item right" data-order="2">
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">
-        <h3 class="text-xl font-semibold">PVUSD WIT Internship</h3>
-        <p>Summer 2018</p>
-      </div>
-    </div>
-
-    <div class="timeline-item left" data-order="3">
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">
-        <h3 class="text-xl font-semibold">Arizona State University</h3>
-        <p>2019 - 2023, B.S. Computer Science</p>
-        <p>Graduated with honors, coursework in web development, machine learning, and databases.</p>
-      </div>
-    </div>
-
-    <div class="timeline-item right" data-order="4">
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">
-        <h3 class="text-xl font-semibold">Ultimate Frisbee</h3>
-        <p>Joined ASU Club Team</p>
-      </div>
-    </div>
-
-    <div class="timeline-item left" data-order="5">
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">
-        <h3 class="text-xl font-semibold">Dizpot Internship</h3>
-        <p>Summer 2021</p>
-      </div>
-    </div>
-
-    <div class="timeline-item right" data-order="6">
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">
-        <h3 class="text-xl font-semibold">Lin & Associates</h3>
-        <p>Software Development • Nov 2021</p>
-      </div>
-    </div>
-
-    <div class="timeline-item left" data-order="7">
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">
-        <h3 class="text-xl font-semibold">San Antonio, TX</h3>
-        <p>Moved Jan 2024 • Remote Work</p>
-      </div>
-    </div>
-
-    <div class="timeline-item right" data-order="8">
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">
-        <h3 class="text-xl font-semibold">Alamogordo, NM</h3>
-        <p>Moved April 2024</p>
-      </div>
-    </div>
-
-    <div class="timeline-item left" data-order="9">
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">
-        <h3 class="text-xl font-semibold">Clovis, NM</h3>
-        <p>Moved Sept 2024</p>
-      </div>
-    </div>
-
-    <div class="timeline-item right" data-order="10">
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">
-        <h3 class="text-xl font-semibold">Got Married</h3>
-        <p>Sept 2025</p>
-      </div>
-    </div>
-
-  </section>
-</main>
-
-<footer class="bg-beige py-8">
-  <div class="container mx-auto px-6 text-center">
-    <p>&copy; 2025 Jenna Orr. All rights reserved.</p>
-  </div>
-</footer>
 
 <script>
-  const heroSection = document.getElementById('hero-section');
-  const timelineItems = document.querySelectorAll('.timeline-item');
+const timelineItems = document.querySelectorAll('.timeline-item');
 
-  const animateOnScroll = () => {
-    const triggerBottom = window.innerHeight * 0.85;
+const animateTimeline = () => {
+  const triggerBottom = window.innerHeight * 0.85;
+  timelineItems.forEach(item => {
+    const top = item.getBoundingClientRect().top;
+    if(top < triggerBottom) item.classList.add('active');
+    else item.classList.remove('active');
+  });
+};
 
-    // Hero fade
-    if(heroSection.getBoundingClientRect().top < triggerBottom){
-      heroSection.classList.add('active');
-    }
-
-    // Timeline fade in/out with 3D pop
-    timelineItems.forEach(item => {
-      const itemTop = item.getBoundingClientRect().top;
-      const content = item.querySelector('.timeline-content');
-      if(itemTop < triggerBottom){
-        item.style.opacity = '1';
-        content.style.transform = 'translateY(0) translateZ(30px)';
-      } else {
-        item.style.opacity = '0';
-        content.style.transform = 'translateY(50px) translateZ(0)';
-      }
-    });
-  };
-
-  window.addEventListener('scroll', animateOnScroll);
-  window.addEventListener('load', animateOnScroll);
+window.addEventListener('scroll', animateTimeline);
+window.addEventListener('load', animateTimeline);
 </script>
-
-</body>
-</html>
